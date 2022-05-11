@@ -24,5 +24,9 @@ RUN rm -rf ./*
 # copy app from builder to . (current dir => WORKDIR /usr/share/nginx/html)
 COPY --from=build-stage /usr/app/dist .
 
+#RUN rm /etc/nginx/conf.d/default.conf
+
+#COPY ./config/nginx /etc/nginx/
+
 # containers run nginx with global dicrectives and daemon off
 CMD ["nginx", "-g", "daemon off;"]
