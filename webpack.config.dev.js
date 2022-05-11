@@ -3,7 +3,8 @@ const common = require('./webpack.config.common')
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-require('dotenv').config({ path: __dirname + '/.env.development' })
+require('dotenv').config({ path: __dirname + '/development.env' })
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -14,7 +15,7 @@ module.exports = merge(common, {
       directory: path.join(__dirname, 'public'),
     },
     compress: true,
-    port: 9000,
+    port: process.env.PORT,
     open: true
   },
   plugins: [
@@ -27,6 +28,9 @@ module.exports = merge(common, {
       path: path.resolve(__dirname, 'development.env'),
       safe: path.resolve(__dirname, 'development.env.example'),
       systemvars: true
+    }),
+    new ESLintPlugin({
+      extensions: ['js', 'jsx', 'ts', 'tsx']
     })
   ],
   module: {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { test } from '@commonFunc/commonFunc'
-import logo from '@assets/images/logo.jpg'
+import logo from "@assets/images/logo.jpg"
 
 export default () => {
   test()
